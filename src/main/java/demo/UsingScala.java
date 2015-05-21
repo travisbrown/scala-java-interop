@@ -38,7 +38,12 @@ public class UsingScala {
   );
 
   /**
-   *
+   * Varargs work with the appropriate annotation on the Scala side.
+   */
+  int howManyStrings = JavaVarargs.countStrings("a", "b", "c");
+
+  /**
+   * Multiple parameter sections in Scala are combined in Java.
    */
   String thrice = MultipleParamSections.multiplyString(3, "s");
 

@@ -35,6 +35,11 @@ object DefaultArguments {
   def multiplyString(n: Int, s: String = "s"): String = s * n
 }
 
+object JavaVarargs {
+	@scala.annotation.varargs
+	def countStrings(strings: String*) = strings.size
+}
+
 object MultipleParamSections {
   def multiplyString(n: Int)(s: String): String = s * n
 }
