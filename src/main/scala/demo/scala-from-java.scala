@@ -46,9 +46,7 @@ object MultipleParamSections {
 }
 
 class Animal
-class Dog extends Animal {
-  val `const` = 1
-}
+class Dog extends Animal
 
 class CovariantClass[+A]
 class ContravariantClass[-A]
