@@ -4,6 +4,13 @@ public class JavaCompanionlessTraitWithImpls
   implements CompanionlessTraitWithImpls {
 
   /**
+   * We have to call the trait's initializer in our constructor.
+   */
+  public JavaCompanionlessTraitWithImpls() {
+    CompanionlessTraitWithImpls$class.$init$(this);
+  }
+
+  /**
    * We have to provide an implementation even though it's implemented in the
    * trait.
    */

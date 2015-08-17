@@ -5,6 +5,7 @@ trait CompanionlessTrait {
 }
 
 trait CompanionlessTraitWithImpls {
+  println("We're in the CompanionlessTraitWithImpls constructor!")
   def bar: String = "bar"
   def baz: String
 }
@@ -36,8 +37,8 @@ object DefaultArguments {
 }
 
 object JavaVarargs {
-	@scala.annotation.varargs
-	def countStrings(strings: String*) = strings.size
+  @scala.annotation.varargs
+  def countStrings(strings: String*) = strings.size
 }
 
 object MultipleParamSections {
@@ -45,7 +46,9 @@ object MultipleParamSections {
 }
 
 class Animal
-class Dog extends Animal
+class Dog extends Animal {
+  val `const` = 1
+}
 
 class CovariantClass[+A]
 class ContravariantClass[-A]

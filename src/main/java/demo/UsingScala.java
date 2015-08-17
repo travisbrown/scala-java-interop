@@ -51,13 +51,6 @@ public class UsingScala {
    * In Scala this would be `"foo" :: Nil`, but we have to mangle the operator
    * name. Also note that we can't use the `scala.List` type alias.
    */
-  scala.collection.immutable.List<String> strings =
-    scala.collection.immutable.Nil.<String>$colon$colon("foo");
-
-  /**
-   * In Scala this would be `"foo" :: Nil`, but we have to mangle the operator
-   * name. Also note that we can't use the `scala.List` type alias.
-   */
   scala.collection.immutable.List<String> stringList =
     scala.collection.immutable.Nil.<String>$colon$colon("foo");
 
@@ -122,7 +115,7 @@ public class UsingScala {
   /**
    * Instead we have to use `Object` for the primitive.
    */
-  public Traversable<String> moreThanThreeChars(Seq<String> xs) {
+  public static Traversable<String> moreThanThreeChars(Seq<String> xs) {
     return xs.filter(
       new com.twitter.util.Function<String, Object>() {
         public Object apply(String x) {
@@ -147,7 +140,7 @@ public class UsingScala {
   }
 
   /**
-   * Converting from Java to a Scala mutable collection.
+   * Converting from Java to a Scala immutable collection.
    */
   Seq<String> toScalaImmutableSeq(java.util.List<String> strings) {
     return asImmutableSeq(strings);
