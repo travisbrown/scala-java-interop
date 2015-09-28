@@ -23,6 +23,10 @@ object CompanionlessObject {
   def someString: String = "nothing"
 }
 
+object ObjectAsInstance extends CompanionedTrait {
+  def foo: String = "foo"
+}
+
 abstract class CompanionedClass {
   def foo: String
   def qux: String = "qux"
@@ -36,9 +40,22 @@ object DefaultArguments {
   def multiplyString(n: Int, s: String = "s"): String = s * n
 }
 
-object JavaVarargs {
+/**
+ * We can create Java-friendly overloads for vararg methods with the @varargs
+ * annotation.
+ */
+object ScalaJavaVarargs {
   @scala.annotation.varargs
   def countStrings(strings: String*) = strings.size
+}
+
+/**
+ * Java doesn't support multiple parameter sections, so what does this compile
+ * to?
+ */
+object MultiVarargs {
+  @scala.annotation.varargs
+  def countStrings(strings: String*)(xs: Int*) = strings.size
 }
 
 object MultipleParamSections {

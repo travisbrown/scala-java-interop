@@ -1,7 +1,6 @@
 package demo;
 
 import com.twitter.util.Function;
-import static com.twitter.util.javainterop.Scala.*;
 import scala.collection.JavaConversions;
 import scala.collection.Seq;
 import scala.collection.Traversable;
@@ -23,6 +22,11 @@ public class UsingScala {
   int someInt2 = CompanionedTrait$.MODULE$.someInt();
 
   /**
+   * We can't directly refer to a Scala object.
+   */
+  CompanionedTrait ct = ObjectAsInstance$.MODULE$;
+
+  /**
    * Methods with default arguments in Scala require all arguments to be
    * provided explicitly.
    */
@@ -40,7 +44,7 @@ public class UsingScala {
   /**
    * Varargs work with the appropriate annotation on the Scala side.
    */
-  int howManyStrings = JavaVarargs.countStrings("a", "b", "c");
+  int howManyStrings = ScalaJavaVarargs.countStrings("a", "b", "c");
 
   /**
    * Multiple parameter sections in Scala are combined in Java.
@@ -143,7 +147,7 @@ public class UsingScala {
    * Converting from Java to a Scala immutable collection.
    */
   Seq<String> toScalaImmutableSeq(java.util.List<String> strings) {
-    return asImmutableSeq(strings);
+    return com.twitter.util.javainterop.Scala.asImmutableSeq(strings);
   }
 
   /**

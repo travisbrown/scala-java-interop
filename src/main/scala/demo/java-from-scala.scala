@@ -19,7 +19,7 @@ import scala.collection.JavaConverters._
 /**
  * Note that we use "extends" even though we're implementing an interface.
  */
-class JavaInterface1 extends JavaInterface {
+class ScalaJavaInterface1 extends JavaInterface {
   /**
    * Be very careful about semicolon inference when porting Java code.
    */
@@ -41,11 +41,11 @@ class JavaInterface1 extends JavaInterface {
   def `forSome`(a: Int): String = "foo"
 }
 
-class JavaAccess1 extends JavaAccess {
+class ScalaJavaAccess1 extends JavaAccess {
   /**
    * Package scoped access is *like* Java's default.
    */
-  protected[demo] def secretString = "foo"
+  private[demo] def secretString = "foo"
 
   protected def lessSecretString = "bar"
 
@@ -55,7 +55,7 @@ class JavaAccess1 extends JavaAccess {
   def nonsecretString = "qux"
 }
 
-class JavaAccess2 extends JavaAccess {
+class ScalaJavaAccess2 extends JavaAccess {
   def secretString = "oof"
   def lessSecretString = "rab"
 
@@ -92,7 +92,7 @@ class ScalaFinal {
   def getZ = z
 }
 
-class JavaClass1 extends JavaClass {
+class ScalaJavaClass1 extends JavaClass {
   /**
    * We can implement a method with a val.
    */
@@ -108,28 +108,28 @@ class JavaClass1 extends JavaClass {
 /**
  * Note that we can extend a Java class with a trait.
  */
-trait JavaClass2 extends JavaClass {
+trait ScalaJavaClass2 extends JavaClass {
   protected def someStuff: jList[_] = Nil.asJava
 }
 
 /**
  * Static field and methods aren't in scope automatically.
  */
-class JavaStatics1 extends JavaStatics {
+class ScalaJavaStatics1 extends JavaStatics {
   def scalaInstanceFoo = JavaStatics.staticFoo
 }
 
 /**
  * Not even for Scala objects.
  */
-object JavaStatics2 extends JavaStatics {
+object ScalaJavaStatics2 extends JavaStatics {
   def scalaObjectFoo = JavaStatics.staticFoo
 }
 
 /**
  * Partial implementation.
  */
-trait JavaInterface2 extends JavaInterface {
+trait ScalaJavaInterface2 extends JavaInterface {
   def foo(x: Int, strings: String*): Unit = {
     strings.foreach(println)
   }
@@ -139,7 +139,7 @@ trait JavaInterface2 extends JavaInterface {
  * Getters and setter will be defined automatically (in addition to the Scala
  * ones).
  */
-class JavaBean1(
+class ScalaJavaBean1(
   @BeanProperty var name: String,
   @BeanProperty val age: Int
 ) extends JavaBean
@@ -147,15 +147,24 @@ class JavaBean1(
 /**
  * We can extend a generic type with an upper bound.
  */
-class JavaGenerics1 extends JavaGenerics[JavaClass1] {
-  def getJavaClass = new JavaClass1
+class ScalaJavaGenerics1 extends JavaGenerics[ScalaJavaClass1] {
+  def getJavaClass = new ScalaJavaClass1
 }
 
 /**
  * This was broken in Scala for a long time, but now it works.
  */
-class JavaInnerClasses1 extends JavaInnerClasses {
+class ScalaJavaInnerClasses1 extends JavaInnerClasses {
   import JavaInnerClasses.InsideThingy
 
   protected def getThingy: InsideThingy = new InsideThingy();
+}
+
+/**
+ * You can implement a zero-arity Java method either with or without
+ * parentheses.
+ */
+class ScalaJavaZeroArityMethods extends JavaZeroArityMethods {
+  def foo: Int = 1
+  def bar(): Int = 2
 }
